@@ -1,9 +1,7 @@
 source :rubygems
 
 group :development do
-  gem 'test-unit'
-  gem 'guard'
-  gem 'guard-test'
+  gem 'guard-rspec', require: false
 
   # OS X: Uncomment one of the following for visual notifications
   # gem 'growl'
