@@ -7,7 +7,7 @@ class Segment
     freeze
   end
 
-  def distance()
+  def distance
     dx = from.x - to.x
     dy = from.y - to.y
     Math.sqrt(dx * dx + dy * dy)
