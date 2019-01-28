@@ -11,17 +11,14 @@ class Object
   # example: 10.class.unfold(&:superclass).inspect => [Fixnum, Integer, Numeric, Object] # using Symbol#to_proc
   #
   # See also: NilClass#unfold
-  def unfold(options = {}, &incrementor)
-    return [] unless options[:while].nil? || options[:while].to_proc.call(self)
-    transformed = options[:map] && options[:map].to_proc[self] || self
-    return [transformed] if options[:to] && options[:to].to_proc.call(self)
-    incrementor.call(self).unfold(options, &incrementor).unshift(transformed)
+  def unfold(&incrementor)
+    incrementor.call(self).unfold(&incrementor).unshift(self)
   end
 end
 
 class NilClass
   # See: Object#unfold
-  def unfold options = {}, &incrementor
+  def unfold(&incrementor)
     []
   end
 end
