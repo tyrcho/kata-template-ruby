@@ -14,6 +14,16 @@ class Object
   def unfold(&incrementor)
     incrementor.call(self).unfold(&incrementor).unshift(self)
   end
+
+  def unfold2(&incrementor)
+    n = incrementor.call(self)
+    if !n.nil?
+      value, next_seed = n
+      next_seed.unfold2(&incrementor).unshift(value)
+    else
+      []
+    end
+  end
 end
 
 class NilClass
